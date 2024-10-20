@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: green-deployment
+  labels:
+    app: k8stimeservice
+    version: green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: k8stimeservice
+      version: green
+  template:
+    metadata:
+      labels:
+        app: k8stimeservice
+        version: green
+    spec:
+      containers:
+        - name: k8stimeservice-container
+          image: k8stimeservice:v2 # Green version of the app
+          ports:
+            - containerPort: 80
